@@ -1,1 +1,32 @@
+# delimiter
+delimiter //
+delimiter;
 
+# create procedure
+delimiter //
+create procedure testProc(in i int, out str varchar(34)) begin  select name into str from Person where id = i; end//
+call testProc(5, @name)//
+select @name//
+
+# delete procedure
+drop procedure testProc//
+
+
+# function 
+create function Hello(s char(15)) returns char(30) return concat('hello', s, ' !')//
+select Hello('World')//
+drop function Hello//
+
+
+# creating variables declare
+create procedure testProc(out str varchar(34)) begin declare i int default 5  set @i = 6 select name into str from Person where id = i; end//
+call testProc(@name)//
+select @name//
+
+# create procedure with if
+create procedure testProc(in i int, out str char(12)) begin if i > 5 then select name into str from Person where id = i; else select age from Person where id = i; end if; end//
+call testProc(5, @name)//
+select @name//
+
+call testProc(5, @name)//
+select @name//
