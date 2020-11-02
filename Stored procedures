@@ -26,6 +26,12 @@ select @name//
 create procedure testProc(in i int, out str char(12)) begin if i > 5 then select name into str from Person where id = i; else select age from Person where id = i; end if; end//
 call testProc(5, @name)//
 select @name//
+drop testProc//
 
 call testProc(5, @name)//
 select @name//
+
+# Cycle and factorial
+create procedure testProc(in i int, out j int) begin set j = 0; label1L loop set j = j + i; set i = i - 1; if i > 0 then iterate label1; end if; leave label1; end loop label1; end//
+call testProc(5, @j)//
+select @j//
