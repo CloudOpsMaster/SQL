@@ -35,3 +35,5 @@ select @name//
 create procedure testProc(in i int, out j int) begin set j = 0; label1L loop set j = j + i; set i = i - 1; if i > 0 then iterate label1; end if; leave label1; end loop label1; end//
 call testProc(5, @j)//
 select @j//
+
+delimiter ;
