@@ -11,7 +11,6 @@ select @name//
 # delete procedure
 drop procedure testProc//
 
-
 # function 
 create function Hello(s char(15)) returns char(30) return concat('hello', s, ' !')//
 select Hello('World')//
