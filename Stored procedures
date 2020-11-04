@@ -37,3 +37,10 @@ call testProc(5, @j)//
 select @j//
 
 delimiter ;
+
+# cursor
+create procedure curDemo() begin declare done int default false; declare n varchar(50); declare a int; declure cur cursor for select name, age from Person; 
+declare continue handler for not found set done = true; open cur; read_label: loop fetch cur into n. a; if a  < 24 then delete from Person where age = a; end if; 
+if done then leave read_lebal; end if; end loop; close cur; end//
+
+
