@@ -1,0 +1,46 @@
+# create/ drop databases
+CREATE schema someName;
+CREATE DATABASE someName;
+DROP DATABASE someName;
+show databases;
+
+# create table
+create table Students(id int, name varchar(50), age int);
+create table if not exist Students(id int, name varchar(50), age int);
+create table 
+       if not exist 
+                   Students(
+                           id int auto increment primary key, 
+                           name varchar(50) not null, 
+                           age int default 0
+                           );
+# Describe table
+describe Person 
+
+# creating tables based on existing / ( создание таблиц на основе существующих )/ ignore, replace
+create table Person2 as select id, name, age FROM Person
+create table Person3  ignore as select id, name, age FROM Person
+create table Person4 replace as select id, name, age FROM Person
+
+# creating tables with condition /создание таблиц с условием
+create table if not exist Person ( id int, name varchar(64), age int, constraint checkAge check(age > 18));
+
+# Добавление адреса в таблицу studAddress таким образом, чтобы адрес соответсвувал в таблице Student по id
+create table if not exist studAddress (id int, street varchar(64), number int, studId int, foreign key(studId) references Student(id));
+
+# Добавление адреса в таблицу studAddress таким образом, чтобы адрес соответсвувал в таблице Student по id + on delete/update cascade/no action/restrict
+create table if not exist studAddress (id int, street varchar(64), number int, studId int, foreign key(studId) references Student(id) on delete cascade);
+create table if not exist studAddress (id int, street varchar(64), number int, studId int, foreign key(studId) references Student(id) on delete no action);
+create table if not exist studAddress (id int, street varchar(64), number int, studId int, foreign key(studId) references Student(id) on delete restrict);
+create table if not exist studAddress (id int, street varchar(64), number int, studId int, foreign key(studId) references Student(id) on update cascade);
+
+# Drop Tables 
+drop table cascade Person4
+drop table restrict Person3
+
+# Modify table
+alter table Student modify addres int;
+alter table Student chenge addres addr int;
+alter table Student alter column addr set default 0;
+alter table Student alter column addr drop default 0;
+alter table Student drop addr;
