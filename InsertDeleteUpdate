@@ -1,0 +1,10 @@
+# INSERT
+INSERT INTO Person (id, name, age) values ( 1, 'Vasia', 34);
+INSERT INTO Person (id, name, age) select id + 1, name, age + 1 from Person where id = 7;
+           
+# DELETE
+DELETE from Person where id = 7;
+DELETE from Person where id = 7 and name is NULL;
+
+# UPDATE 
+UPDATE Person set age = 34 where id = 33;
