@@ -1,0 +1,2 @@
+# Index 
+create index ageIndex on Student(age);
