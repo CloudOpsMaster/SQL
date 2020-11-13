@@ -1,0 +1,6 @@
+# Trigger 
+create trigger insertAdress before/after insert/update/delete on Person for each row insert into Address ( id, streat, address ) values ( 1, 'Shechenco', 3, new.id );
+create trigger updateAdress after update on Person for each row insert into Address ( id, streat, address ) values ( 1, 'Shechenco', 3, old.id );
+
+# Delete trigger
+drop triggerr sommeTriggerr 
