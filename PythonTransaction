@@ -8,6 +8,6 @@ try:
     mysql.execute("UPDATE account SET balance = balance - 5000 WHERE id =2;")
     mysql.execute("UPDATE account SET balance = balance + 5000 WHERE id =3;")
     mysql.execute("COMMIT;")
- exept ExecuteError:
-    mysql.execute("ROLLACK;")
+ except ExecuteError:
+    mysql.execute("ROLLBACK;")
     
