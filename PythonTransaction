@@ -1,0 +1,13 @@
+from db_connection import MySQL, ExecuteError
+mysql = MySQL()
+
+
+mysql.execute("START TRANSACTION;")
+
+try:
+    mysql.execute("UPDATE account SET balance = balance - 5000 WHERE id =2;")
+    mysql.execute("UPDATE account SET balance = balance + 5000 WHERE id =3;")
+    mysql.execute("COMMIT;")
+ exept ExecuteError:
+    mysql.execute("ROLLACK;")
+    
