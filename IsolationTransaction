@@ -1,0 +1,19 @@
+
+
+mysql.execute("SET TRANZACTION IZOLATION LEVEL READ COMMITED;")
+mysql.execute("START TRANZACTION;")
+
+try:
+   mysql.execute("SELECT @sum=5000, @from=4, @to=1;")
+   mysql.execute("SELECT @balance_from := amount FROM accounts WHERE id = @from;")
+   mysql.execute("SELECT @balance_to := amount FROM accounts WHERE id = @to;")
+   
+   mysql.sleep(5)
+   
+   
+   mysql.execute("UPDATE accounts SET balance = @balance_from - @sum WHERE id = @from;")
+   mysql.execute("UPDATE accounts SET balance = @balance_from + @sum WHERE id = @to;")
+   mysql.execute("COMMIT;")
+   
+except:
+    mysql.execute("ROLLBACK;")
